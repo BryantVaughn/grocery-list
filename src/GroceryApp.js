@@ -6,6 +6,7 @@ import { Typography } from '@material-ui/core';
 import { AppBar } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function GroceryApp() {
   const initialGroceries = [
@@ -15,8 +16,21 @@ export default function GroceryApp() {
   ];
 
   const [groceries, setGroceries] = useState(initialGroceries);
+  
   const addGroceryItem = newGroceryText => {
-    setGroceries([...groceries, { id: 4, item: newGroceryText, completed: false }])
+    setGroceries([...groceries, { id: uuidv4(), item: newGroceryText, completed: false }])
+  };
+
+  const removeGroceryItem = groceryId => {
+    const updatedGroceries = groceries.filter(item => item.id !== groceryId);
+    setGroceries(updatedGroceries);
+  };
+
+  const toggleGroceryItem = groceryId => {
+    const updatedGroceries = groceries.map(item =>
+      item.id === groceryId ? { ...item, found: !item.found } : item
+    );
+    setGroceries(updatedGroceries);
   };
 
   return (
@@ -46,7 +60,11 @@ export default function GroceryApp() {
           lg={ 4 }
         >
           <GroceryForm addGroceryItem={ addGroceryItem } />
-          <GroceryList groceries={ groceries } />
+          <GroceryList
+            toggle={ toggleGroceryItem }
+            groceries={ groceries }
+            remove={ removeGroceryItem }
+          />
         </Grid>
       </Grid>
     </Paper>
