@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core';
 import { List } from '@material-ui/core';
 import { Divider } from '@material-ui/core';
 
-export default function GroceryList({ groceries, remove, toggle }) {
+export default function GroceryList({ groceries, remove, toggle, edit }) {
   return (
     <Paper>
       <List>
@@ -17,6 +17,7 @@ export default function GroceryList({ groceries, remove, toggle }) {
               found={ item.found }
               remove={ remove }
               toggle={ toggle }
+              edit={ edit }
             />
             <Divider />
           </>

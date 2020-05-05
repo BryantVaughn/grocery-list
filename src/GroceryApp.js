@@ -33,6 +33,13 @@ export default function GroceryApp() {
     setGroceries(updatedGroceries);
   };
 
+  const editGroceryItem = (groceryId, newItem) => {
+    const updatedGroceries = groceries.map(item =>
+      item.id === groceryId ? { ...item, item: newItem } : item
+    );
+    setGroceries(updatedGroceries);
+  }
+
   return (
     <Paper
       style={{
@@ -64,6 +71,7 @@ export default function GroceryApp() {
             toggle={ toggleGroceryItem }
             groceries={ groceries }
             remove={ removeGroceryItem }
+            edit={ editGroceryItem }
           />
         </Grid>
       </Grid>
