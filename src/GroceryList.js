@@ -13,7 +13,7 @@ export default function GroceryList(props) {
             <GroceryItem
               item={ groceryItem.item }
               key={ groceryItem.id }
-              completed={ groceryItem.completed }
+              completed={ groceryItem.found }
             />
             <Divider />
           </>
