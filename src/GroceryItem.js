@@ -33,7 +33,7 @@ export default function GroceryItem({ id, item, found, remove, toggle, edit }) {
               textDecoration: found
                 ? "line-through"
                 : "none"
-              }}
+            }}
             >
             { item }
           </ListItemText>
