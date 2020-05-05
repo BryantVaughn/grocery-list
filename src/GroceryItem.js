@@ -13,7 +13,7 @@ export default function GroceryItem({ id, item, found, remove, toggle, edit }) {
   const [isEditing, toggleIsEditing] = useToggleState(false);
 
   return (
-    <ListItem>
+    <ListItem style={{ height: "64px" }}>
       {isEditing ? (
         <EditGroceryForm
           edit={ edit }

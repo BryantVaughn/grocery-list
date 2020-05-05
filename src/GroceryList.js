@@ -8,7 +8,7 @@ export default function GroceryList({ groceries, remove, toggle, edit }) {
   return (
     <Paper>
       <List>
-        { groceries.map(item => (
+        { groceries.map((item, idx) => (
           <>
             <GroceryItem
               id={ item.id }
@@ -19,7 +19,7 @@ export default function GroceryList({ groceries, remove, toggle, edit }) {
               toggle={ toggle }
               edit={ edit }
             />
-            <Divider />
+            { idx < groceries.length - 1 && <Divider /> }
           </>
         ))}
       </List>
