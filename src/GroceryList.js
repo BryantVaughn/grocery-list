@@ -10,18 +10,15 @@ export default function GroceryList({ groceries, remove, toggle, edit }) {
       <Paper>
         <List>
           { groceries.map((item, idx) => (
-            <>
+            <React.Fragment key={ item.id }>
               <GroceryItem
-                id={ item.id }
-                item={ item.item }
-                key={ item.id }
-                found={ item.found }
+                { ...item }
                 remove={ remove }
                 toggle={ toggle }
                 edit={ edit }
               />
               { idx < groceries.length - 1 && <Divider /> }
-            </>
+            </React.Fragment>
           ))}
         </List>
       </Paper>
