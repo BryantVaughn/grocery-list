@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GroceryList from './GroceryList';
 import GroceryForm from './GroceryForm';
+import useGroceryState from './hooks/useGroceryState';
 import { Paper } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { AppBar } from '@material-ui/core';
@@ -8,16 +9,13 @@ import { Toolbar } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
 export default function GroceryApp() {
-  const initialGroceries = [
-    { id: 1, item: "Bananas", found: false },
-    { id: 2, item: "Coffee", found: false },
-    { id: 3, item: "Chicken", found: false }
-  ];
+  const initialGroceries = [{ id: 1, item: "Bananas", found: false }];
 
-  const [groceries, setGroceries] = useState(initialGroceries);
-  const addGroceryItem = newGroceryText => {
-    setGroceries([...groceries, { id: 4, item: newGroceryText, completed: false }])
-  };
+  const { groceries,
+    addGroceryItem,
+    removeGroceryItem,
+    toggleGroceryItem,
+    editGroceryItem } = useGroceryState(initialGroceries);
 
   return (
     <Paper
@@ -46,7 +44,12 @@ export default function GroceryApp() {
           lg={ 4 }
         >
           <GroceryForm addGroceryItem={ addGroceryItem } />
-          <GroceryList groceries={ groceries } />
+          <GroceryList
+            toggle={ toggleGroceryItem }
+            groceries={ groceries }
+            remove={ removeGroceryItem }
+            edit={ editGroceryItem }
+          />
         </Grid>
       </Grid>
     </Paper>
