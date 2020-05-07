@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useInputState from './hooks/useInputState';
 import { TextField } from '@material-ui/core';
+import { GroceriesContext } from './contexts/groceries.context';
 
-export default function EditGroceryForm({ id, edit, item, toggleIsEditing }) {
+export default function EditGroceryForm({ id, item, toggleIsEditing }) {
+  const { editGroceryItem } = useContext(GroceriesContext);
   const [value, handleChange, reset] = useInputState(item);
 
   return (
     <form
       onSubmit={ (evt) => {
         evt.preventDefault();
-        edit(id, value);
+        editGroceryItem(id, value);
         reset();
         toggleIsEditing();
       }}

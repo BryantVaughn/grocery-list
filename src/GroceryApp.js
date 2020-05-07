@@ -1,7 +1,7 @@
 import React from 'react';
 import GroceryList from './GroceryList';
 import GroceryForm from './GroceryForm';
-import useGroceryState from './hooks/useGroceryState';
+import { GroceriesProvider } from './contexts/groceries.context';
 import { Paper } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { AppBar } from '@material-ui/core';
@@ -9,13 +9,6 @@ import { Toolbar } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
 export default function GroceryApp() {
-  const initialGroceries = [{ id: 1, item: "Bananas", found: false }];
-
-  const { groceries,
-    addGroceryItem,
-    removeGroceryItem,
-    toggleGroceryItem,
-    editGroceryItem } = useGroceryState(initialGroceries);
 
   return (
     <Paper
@@ -43,13 +36,10 @@ export default function GroceryApp() {
           md={ 8 }
           lg={ 4 }
         >
-          <GroceryForm addGroceryItem={ addGroceryItem } />
-          <GroceryList
-            toggle={ toggleGroceryItem }
-            groceries={ groceries }
-            remove={ removeGroceryItem }
-            edit={ editGroceryItem }
-          />
+          <GroceriesProvider>
+            <GroceryForm />
+            <GroceryList />
+          </GroceriesProvider>
         </Grid>
       </Grid>
     </Paper>

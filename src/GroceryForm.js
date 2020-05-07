@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Paper } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import useInputState from './hooks/useInputState';
+import { GroceriesContext } from './contexts/groceries.context';
 
-export default function GroceryForm({ addGroceryItem }) {
+export default function GroceryForm() {
   const [value, handleChange, reset] = useInputState("");
+  const { addGroceryItem } = useContext(GroceriesContext);
 
   return (
     <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
