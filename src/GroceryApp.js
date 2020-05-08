@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import { AppBar } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
 export default function GroceryApp() {
 
@@ -22,7 +23,8 @@ export default function GroceryApp() {
     >
       <AppBar color="primary" position="static" style={{ height: "64px"}}>
         <Toolbar>
-          <Typography color="inherit">Grocery List</Typography>
+          <Typography style={{ fontSize: "25px"}} color="inherit">Grocery List</Typography>
+          <ShoppingCartRoundedIcon style={{ marginLeft: "1rem" }} />
         </Toolbar>
       </AppBar>
       <Grid 
