@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import useToggleState from './hooks/useToggleState';
 import EditGroceryForm from './EditGroceryForm';
 import { ListItem } from '@material-ui/core';
@@ -10,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { DispatchContext } from './contexts/groceries.context';
 
-export default function GroceryItem({ id, item, found }) {
+function GroceryItem({ id, item, found }) {
   const dispatch = useContext(DispatchContext);
   const [isEditing, toggleIsEditing] = useToggleState(false);
 
@@ -54,3 +54,5 @@ export default function GroceryItem({ id, item, found }) {
     </ListItem>
   );
 }
+
+export default memo(GroceryItem);
