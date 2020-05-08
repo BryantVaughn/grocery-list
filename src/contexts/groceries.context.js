@@ -1,6 +1,5 @@
 import React, { createContext, useReducer } from 'react';
 import GroceryReducer from '../reducers/grocery.reducer';
-import useGroceryState from '../hooks/useGroceryState';
 
 const defaultGroceries = [
   { id: 1, item: "Bananas", found: false },
@@ -8,13 +7,16 @@ const defaultGroceries = [
 ];
 
 export const GroceriesContext = createContext();
+export const DispatchContext = createContext();
 
 export function GroceriesProvider(props) {
   const [groceries, dispatch] = useReducer(GroceryReducer, defaultGroceries);
 
   return (
-    <GroceriesContext.Provider value={{ groceries, dispatch }}>
-      { props.children }
+    <GroceriesContext.Provider value={ groceries }>
+      <DispatchContext.Provider value={ dispatch }>
+        { props.children }
+      </DispatchContext.Provider>
     </GroceriesContext.Provider>
   );
 }

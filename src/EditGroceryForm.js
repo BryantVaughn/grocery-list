@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import useInputState from './hooks/useInputState';
 import { TextField } from '@material-ui/core';
-import { GroceriesContext } from './contexts/groceries.context';
+import { DispatchContext } from './contexts/groceries.context';
 
 export default function EditGroceryForm({ id, item, toggleIsEditing }) {
-  const { dispatch } = useContext(GroceriesContext);
+  const dispatch = useContext(DispatchContext);
   const [value, handleChange, reset] = useInputState(item);
 
   return (

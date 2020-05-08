@@ -6,7 +6,7 @@ import { Divider } from '@material-ui/core';
 import { GroceriesContext } from './contexts/groceries.context';
 
 export default function GroceryList() {
-  const { groceries } = useContext(GroceriesContext);
+  const groceries = useContext(GroceriesContext);
   if (groceries.length)
     return (
       <Paper>
