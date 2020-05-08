@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext } from 'react';
+import { useLocalStorageReducer } from '../hooks/useLocalStorageReducer';
 import GroceryReducer from '../reducers/grocery.reducer';
 
 const defaultGroceries = [
@@ -10,7 +11,9 @@ export const GroceriesContext = createContext();
 export const DispatchContext = createContext();
 
 export function GroceriesProvider(props) {
-  const [groceries, dispatch] = useReducer(GroceryReducer, defaultGroceries);
+  const [groceries, dispatch] = useLocalStorageReducer(
+    "groceries", defaultGroceries, GroceryReducer
+  );
 
   return (
     <GroceriesContext.Provider value={ groceries }>
