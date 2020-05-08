@@ -4,14 +4,14 @@ import { TextField } from '@material-ui/core';
 import { GroceriesContext } from './contexts/groceries.context';
 
 export default function EditGroceryForm({ id, item, toggleIsEditing }) {
-  const { editGroceryItem } = useContext(GroceriesContext);
+  const { dispatch } = useContext(GroceriesContext);
   const [value, handleChange, reset] = useInputState(item);
 
   return (
     <form
       onSubmit={ (evt) => {
         evt.preventDefault();
-        editGroceryItem(id, value);
+        dispatch({ type: "EDIT", id: id, item: value });
         reset();
         toggleIsEditing();
       }}

@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import GroceryReducer from '../reducers/grocery.reducer';
 import useGroceryState from '../hooks/useGroceryState';
 
 const defaultGroceries = [
@@ -9,10 +10,10 @@ const defaultGroceries = [
 export const GroceriesContext = createContext();
 
 export function GroceriesProvider(props) {
-  const groceryStuff = useGroceryState(defaultGroceries);
+  const [groceries, dispatch] = useReducer(GroceryReducer, defaultGroceries);
 
   return (
-    <GroceriesContext.Provider value={ groceryStuff }>
+    <GroceriesContext.Provider value={{ groceries, dispatch }}>
       { props.children }
     </GroceriesContext.Provider>
   );

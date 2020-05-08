@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { GroceriesContext } from './contexts/groceries.context';
 
 export default function GroceryItem({ id, item, found }) {
-  const { removeGroceryItem, toggleGroceryItem } = useContext(GroceriesContext);
+  const { dispatch } = useContext(GroceriesContext);
   const [isEditing, toggleIsEditing] = useToggleState(false);
 
   return (
@@ -27,7 +27,7 @@ export default function GroceryItem({ id, item, found }) {
           <Checkbox
             tabIndex={ -1 }
             checked={ found }
-            onClick={ () => toggleGroceryItem(id) }
+            onClick={ () => dispatch({ type: "TOGGLE", id: id }) }
           />
           <ListItemText
             style={{
@@ -42,7 +42,10 @@ export default function GroceryItem({ id, item, found }) {
             <IconButton aria-label="Edit" onClick={toggleIsEditing}>
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="Delete" onClick={() => removeGroceryItem(id) }>
+            <IconButton
+              aria-label="Delete"
+              onClick={() => dispatch({ type: "REMOVE", id: id })}
+            >
               <DeleteIcon />
             </IconButton>
           </ListItemSecondaryAction>

@@ -6,14 +6,14 @@ import { GroceriesContext } from './contexts/groceries.context';
 
 export default function GroceryForm() {
   const [value, handleChange, reset] = useInputState("");
-  const { addGroceryItem } = useContext(GroceriesContext);
+  const { dispatch } = useContext(GroceriesContext);
 
   return (
     <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
       <form
         onSubmit={ evt => {
           evt.preventDefault();
-          addGroceryItem(value);
+          dispatch({ type: "ADD", item: value })
           reset();
         }}
       >
